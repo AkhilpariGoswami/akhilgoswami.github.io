@@ -2,137 +2,743 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akhil Goswami - Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="Assets/android-chrome-512x512.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akhilpari Goswami — Product Engineer</title>
+  <meta name="description" content="I don't just build, I figure out what to build. Product-minded engineering student at GEC Rajkot — building real products that solve real problems.">
+  <meta name="author" content="Akhilpari Goswami">
+  <meta name="keywords" content="Akhilpari Goswami, Product Engineer, GEC Rajkot, React Developer, AI DS, Portfolio">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://akhilpari.com/">
+  <meta property="og:title" content="Akhilpari Goswami — Product Engineer">
+  <meta property="og:description" content="I don't just build, I figure out what to build. Product-minded engineering student building real products that solve real problems.">
+  <meta property="og:image" content="https://akhilpari.com/og-image.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://akhilpari.com/">
+  <meta name="twitter:title" content="Akhilpari Goswami — Product Engineer">
+  <meta name="twitter:description" content="I don't just build, I figure out what to build.">
+  <meta name="twitter:image" content="https://akhilpari.com/og-image.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://akhilpari.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #090909;
+      --bg2: #101010;
+      --bg3: #141414;
+      --surface: #1a1a1a;
+      --surface2: #212121;
+      --border: rgba(255,255,255,0.06);
+      --text: #ede9e3;
+      --text-muted: #63605c;
+      --text-dim: #2e2c2a;
+      --accent: #00c8ff;
+      --accent-warm: #ff6b35;
+      --accent-glow: rgba(0,200,255,0.12);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-ui: 'Syne', sans-serif;
+      --radius: 3px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Cursor ── */
+    #cursor { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; }
+    .cursor-dot {
+      width: 5px; height: 5px;
+      background: var(--accent); border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: absolute; top: 0; left: 0;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(0,200,255,0.35); border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .25s, height .25s, border-color .25s, background .25s;
+    }
+    .cursor-ring.hovered {
+      width: 48px; height: 48px;
+      border-color: var(--accent);
+      background: rgba(0,200,255,0.04);
+    }
+
+    /* ── Noise ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.022; pointer-events: none;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 52px;
+      background: rgba(9,9,9,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-ui); font-weight: 800;
+      font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--bg); background: var(--accent);
+      padding: 9px 22px; border-radius: var(--radius);
+      text-decoration: none; transition: box-shadow .3s, transform .2s;
+    }
+    .nav-cta:hover { box-shadow: 0 0 24px rgba(0,200,255,.35); transform: translateY(-1px); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh; padding: 150px 52px 90px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero-orb {
+      position: absolute; top: -80px; right: -180px;
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(0,200,255,.055) 0%, transparent 68%);
+      pointer-events: none; animation: orb 7s ease-in-out infinite;
+    }
+    .hero-orb2 {
+      position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,107,53,.04) 0%, transparent 65%);
+      pointer-events: none; animation: orb 9s ease-in-out infinite reverse;
+    }
+    @keyframes orb { 0%,100%{transform:scale(1) translate(0,0)} 50%{transform:scale(1.08) translate(20px,-20px)} }
+
+    .hero-eyebrow {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 30px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-eyebrow::before { content:''; width:22px; height:1px; background:var(--text-muted); }
+
+    .hero-headline {
+      font-family: var(--font-ui);
+      font-size: clamp(48px, 8.5vw, 112px);
+      font-weight: 800; line-height: .94; letter-spacing: -.035em;
+      max-width: 900px; margin-bottom: 36px;
+    }
+    .hero-headline em { font-style: italic; color: var(--accent); display: block; }
+
+    .hero-sub {
+      max-width: 420px; font-size: 15px; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 52px; font-weight: 300;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 24px; }
+    .btn-primary {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--bg); background: var(--accent);
+      padding: 14px 30px; border-radius: var(--radius); text-decoration: none;
+      transition: box-shadow .3s, transform .2s;
+    }
+    .btn-primary:hover { box-shadow: 0 0 32px rgba(0,200,255,.4); transform: translateY(-2px); }
+    .btn-ghost {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none;
+      display: flex; align-items: center; gap: 8px; transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .btn-ghost .arr { transition: transform .2s; }
+    .btn-ghost:hover .arr { transform: translateX(5px); }
+
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; border-top: 1px solid var(--border);
+    }
+    .hero-stat {
+      flex: 1; padding: 20px 52px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-ui); font-size: 22px; font-weight: 800;
+      letter-spacing: -.02em; color: var(--text);
+    }
+    .stat-label {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 50px;
+    }
+    .section-label::before { content:''; width:18px; height:1px; background:var(--text-muted); }
+
+    /* ── Projects ── */
+    .projects { padding: 100px 52px; border-bottom: 1px solid var(--border); }
+    .projects-header { margin-bottom: 52px; }
+    .projects-title {
+      font-family: var(--font-ui); font-size: clamp(30px,4vw,50px);
+      font-weight: 800; letter-spacing: -.025em;
+    }
+
+    .bento {
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: 3px; background: var(--border); border: 1px solid var(--border);
+    }
+    .bento-item {
+      background: var(--bg2); position: relative; overflow: hidden;
+      cursor: pointer; transition: background .35s;
+    }
+    .bento-item:hover { background: var(--bg3); }
+    .bento-item:hover .proj-tag-bar { background: var(--accent); color: var(--bg); }
+    .bento-item:hover .project-arrow { transform: translate(4px,-4px); }
+
+    .proj-main {
+      padding: 52px 48px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 500px;
+    }
+    .proj-main .proj-bg-text {
+      position: absolute; top: 30px; left: 40px;
+      font-family: var(--font-display); font-size: 160px; line-height: 1;
+      color: rgba(255,255,255,.025); letter-spacing: -4px;
+      user-select: none; pointer-events: none;
+    }
+    .proj-main::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--accent);
+      transition: height .5s ease;
+    }
+    .bento-item:hover .proj-main::before { height: 100%; }
+
+    .proj-secondary {
+      padding: 40px 36px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 500px; background: #0c0c0c;
+    }
+    .proj-secondary .proj-bg-icon {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-60%);
+      font-size: 80px; opacity: .04;
+      pointer-events: none; user-select: none;
+    }
+
+    .proj-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 18px;
+    }
+    .status-dot { width: 5px; height: 5px; border-radius: 50%; }
+    .status-dot.live { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,.5); }
+    .status-dot.concept { background: var(--accent-warm); box-shadow: 0 0 6px rgba(255,107,53,.4); }
+
+    .proj-tag-bar {
+      display: inline-block;
+      font-family: var(--font-ui); font-size: 9px; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--text-muted); background: var(--surface2);
+      padding: 4px 10px; border-radius: 2px; margin-bottom: 14px;
+      transition: background .3s, color .3s;
+    }
+    .proj-name {
+      font-family: var(--font-ui); font-size: 28px; font-weight: 800;
+      letter-spacing: -.02em; margin-bottom: 12px;
+    }
+    .proj-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px; max-width: 320px; }
+    .proj-stack {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 28px;
+    }
+    .proj-link {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px; transition: color .2s;
+    }
+    .proj-link:hover { color: var(--accent); }
+    .project-arrow { transition: transform .25s; display: inline-block; }
+
+    /* ── Philosophy ── */
+    .philosophy { padding: 100px 52px; border-bottom: 1px solid var(--border); }
+    .phil-top {
+      display: grid; grid-template-columns: 260px 1fr 1fr;
+      gap: 56px; margin-bottom: 4px;
+    }
+    .phil-section-tag {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px;
+    }
+    .phil-title {
+      font-family: var(--font-ui); font-size: 34px; font-weight: 800;
+      letter-spacing: -.022em; line-height: 1.1;
+    }
+    .phil-card { padding-top: 10px; border-top: 1px solid var(--border); }
+    .phil-card-icon { font-size: 17px; opacity: .5; margin-bottom: 16px; }
+    .phil-card-title { font-family: var(--font-ui); font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .phil-card-text { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+
+    .phil-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; background: var(--border); border: 1px solid var(--border); margin-top: 3px;
+    }
+    .phil-grid-item {
+      background: var(--bg2); padding: 44px; transition: background .3s;
+    }
+    .phil-grid-item:hover { background: var(--bg3); }
+
+    /* ── Process ── */
+    .process { padding: 100px 52px; border-bottom: 1px solid var(--border); }
+    .process-header { text-align: center; margin-bottom: 80px; }
+    .process-eyebrow {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px;
+    }
+    .process-title {
+      font-family: var(--font-ui); font-size: clamp(34px,5vw,60px);
+      font-weight: 800; letter-spacing: -.03em;
+    }
+    .process-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; background: var(--border); border: 1px solid var(--border);
+    }
+    .process-cell {
+      background: var(--bg2); padding: 54px 48px;
+      position: relative; overflow: hidden;
+    }
+    .process-cell-visual {
+      background: var(--bg3); display: flex; align-items: center; justify-content: center; min-height: 260px;
+    }
+    .process-num-bg {
+      position: absolute; bottom: -16px; right: -8px;
+      font-family: var(--font-display); font-size: 130px; line-height: 1;
+      color: rgba(255,255,255,.025); user-select: none; pointer-events: none;
+    }
+    .process-badge {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--surface2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-ui); font-size: 10px; font-weight: 700; color: var(--accent);
+      margin-bottom: 26px;
+    }
+    .process-step-title {
+      font-family: var(--font-ui); font-size: 22px; font-weight: 800;
+      letter-spacing: -.02em; margin-bottom: 14px;
+    }
+    .process-step-text { font-size: 13px; color: var(--text-muted); line-height: 1.75; max-width: 340px; }
+
+    .orb3d {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #252525 0%, #0e0e0e 100%);
+      box-shadow: 0 0 60px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05), 0 0 20px rgba(0,200,255,.05);
+      position: relative;
+    }
+    .orb3d::after {
+      content: ''; position: absolute; top: 18%; left: 22%; width: 28%; height: 18%;
+      background: rgba(255,255,255,.06); border-radius: 50%; filter: blur(3px);
+    }
+
+    /* ── Experiments ── */
+    .experiments { padding: 100px 52px; border-bottom: 1px solid var(--border); }
+    .exp-header {
+      display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px;
+    }
+    .experiments-title {
+      font-family: var(--font-ui); font-size: 36px; font-weight: 800; letter-spacing: -.022em;
+    }
+    .exp-count {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .exp-item {
+      display: grid; grid-template-columns: 1fr auto auto;
+      align-items: center; gap: 24px; padding: 22px 0;
+      border-top: 1px solid var(--border); cursor: pointer; transition: padding-left .3s;
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--border); }
+    .exp-item:hover { padding-left: 10px; }
+    .exp-item:hover .exp-arrow { color: var(--accent); transform: translateX(4px); }
+    .exp-left { display: flex; align-items: center; gap: 16px; }
+    .exp-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; }
+    .exp-name { font-family: var(--font-ui); font-size: 15px; font-weight: 600; }
+    .exp-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .exp-tag {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted);
+      background: var(--surface); padding: 4px 10px; border-radius: 2px;
+    }
+    .exp-arrow { color: var(--text-muted); font-size: 15px; transition: color .2s, transform .2s; }
+
+    /* ── About ── */
+    .about {
+      padding: 100px 52px;
+      display: grid; grid-template-columns: 360px 1fr;
+      gap: 90px; align-items: center; border-bottom: 1px solid var(--border);
+    }
+    .about-photo-wrap {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--bg3); border: 1px solid var(--border); overflow: hidden; position: relative;
+    }
+    .photo-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #161616, #0a0a0a);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 180px; color: rgba(255,255,255,.015); user-select: none;
+    }
+    .photo-label {
+      position: absolute; bottom: 20px; left: 20px;
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted);
+      background: rgba(9,9,9,.7); padding: 6px 12px; border-radius: 2px;
+      backdrop-filter: blur(8px);
+    }
+    .about-tag {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 22px;
+    }
+    .about-heading {
+      font-family: var(--font-ui); font-size: clamp(30px,3.5vw,46px);
+      font-weight: 800; letter-spacing: -.025em; line-height: 1.06; margin-bottom: 28px;
+    }
+    .about-heading em { font-style: italic; color: var(--accent); }
+    .about-text {
+      font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px;
+      max-width: 500px; font-weight: 300;
+    }
+    .about-focus { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 40px; }
+    .focus-chip {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+      background: rgba(0,200,255,.07); border: 1px solid rgba(0,200,255,.15);
+      padding: 5px 12px; border-radius: 2px;
+    }
+    .about-creds { display: flex; gap: 44px; flex-wrap: wrap; }
+    .cred { border-top: 1px solid var(--border); padding-top: 16px; min-width: 130px; }
+    .cred-label {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
+    }
+    .cred-value { font-family: var(--font-ui); font-size: 13px; font-weight: 700; line-height: 1.4; }
+
+    /* ── Social strip ── */
+    .social-strip {
+      padding: 0 52px; display: flex; align-items: center; border-bottom: 1px solid var(--border);
+    }
+    .social-link {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none;
+      padding: 22px 0; margin-right: 44px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .social-link:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); letter-spacing: .05em; }
+    .footer-copy span { color: var(--accent); }
+    .footer-right { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .36s; } .d4 { transition-delay: .5s; }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+
+    @media (max-width: 960px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 110px; }
+      .hero-stats { position: static; flex-wrap: wrap; }
+      .hero-stat { padding: 18px 24px; border-bottom: 1px solid var(--border); }
+      .projects,.philosophy,.process,.experiments,.about,.social-strip,footer { padding-left: 24px; padding-right: 24px; }
+      .bento,.phil-grid,.process-grid { grid-template-columns: 1fr; }
+      .phil-top { grid-template-columns: 1fr; gap: 40px; }
+      .about { grid-template-columns: 1fr; }
+      .about-photo-wrap { max-width: 280px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- === NAVBAR === -->
-  <header>
-    <div class="logo">
-      <img src="Assets/android-chrome-512x512.png" alt="logo">
-      <h3>Akhil Goswami</h3>
-    </div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="resume.pdf" class="resume-btn" download>Download Resume</a>
-  </header>
 
-  <!-- === HERO SECTION === -->
-  <section id="home">
-    <div class="hero-text">
-      <h1>Hello, I’m <span style="color: #136dec;">Akhil Goswami</span> 👋</h1>
-      <p>Frontend Developer & Product Enthusiast</p>
-      <div class="hero-btns">
-        <a href="resume.pdf" download>Download Resume</a>
-        <a href="#projects">View My Work</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="Assets/home_page_photo.png" alt="Profile Image" />
-    </div>
-  </section>
+<div id="cursor">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+</div>
 
-  <!-- === ABOUT SECTION === -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m an engineering student exploring the world of web technologies and digital products. My focus is on building intuitive, efficient, and meaningful experiences through design and code.
-    </p>
-  </section>
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">AG<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#thinking">Thinking</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="/resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></li>
+  </ul>
+  <a href="contact.html" target="_blank" rel="noopener noreferrer" class="nav-cta">Get in Touch</a>
+</nav>
 
-  <!-- === SKILLS SECTION === -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card">HTML</div>
-      <div class="skill-card">CSS</div>
-      <div class="skill-card">JavaScript</div>
-      <div class="skill-card">React</div>
-      <div class="skill-card">Node.js</div>
-      <div class="skill-card">MongoDB</div>
-      <div class="skill-card">Git & GitHub</div>
-      <div class="skill-card">UI/UX Basics</div>
-      <div class="skill-card">Figma</div>
-      <div class="skill-card">Notion</div>
-    </div>
-  </section>
-
-  <!-- === PROJECTS SECTION === -->
-  <section class="projects" id="projects">
-    <h1 class="projects-h1">Projects</h1>
-    <div class="projects-container">
-        <div class="project-card wip">
-          <img src="Assets/knhighCraving.jpeg" alt="KnightCraving project screenshot" class="project-img">
-          <div class="overlay">Coming Soon</div>
-          <h2 class="project-h2">KnightCraving</h2>
-          <p class="project-p">A food delivery comparison app that helps users find the best prices across platforms like Zomato and Swiggy.</p>
-        </div>
-        <div class="project-card">
-          <img src="Assets/house.png" alt="House Service project screenshot" class="project-img">
-          <h2 class="project-h2">House Service</h2>
-          <p class="project-p">A bridge between homeowners and service providers such as electricians, plumbers, and mechanics.</p>
-          <div class="project-buttons">
-              <a href="#" class="view-btn">View Project</a>
-              <a href="https://github.com/AkhilpariGoswami/Local-Link" target="_blank" class="github-btn">GitHub</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="Assets/bank.png" alt="Plutus Bank project screenshot" class="project-img">
-          <h2 class="project-h2">Plutus Bank</h2>
-          <p class="project-p">A digital banking web app simulating secure transactions, deposits, and withdrawals.</p>
-          <div class="project-buttons">
-              <a href="#" class="view-btn">View Project</a>
-              <a href="https://github.com/AkhilpariGoswami/Plutus-Bank" target="_blank" class="github-btn">GitHub</a>
-          </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- === CONTACT SECTION === -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <p>Let's connect and build something amazing together!</p>
-
-  <!-- Contact Links -->
-  <div class="contact-links">
-    <a href="https://github.com/&#x41;&#x6B;&#x68;&#x69;&#x6C;&#x70;&#x61;&#x72;&#x69;&#x47;&#x6F;&#x73;&#x77;&#x61;&#x6D;&#x69;" target="_blank">
-      <i class="fab fa-github"></i> GitHub
-    </a>
-    <a href="https://mail.google.com/mail/?view=cm&to=&#x61;&#x6B;&#x68;&#x69;&#x6C;&#x70;&#x61;&#x72;&#x69;&#x6B;&#x67;&#x6F;&#x73;&#x77;&#x61;&#x6D;&#x69;&commat;&#x67;&#x6D;&#x61;&#x69;&#x6C;&period;&#x63;&#x6F;&#x6D;" target="_blank">
-    <i class="fas fa-envelope"></i> Email
-    </a>
-    <a href="https://www.linkedin.com/in/&#x61;&#x6B;&#x68;&#x69;&#x6C;&#x70;&#x61;&#x72;&#x69;&#x2D;&#x67;&#x6F;&#x73;&#x77;&#x61;&#x6D;&#x69;/" target="_blank">
-      <i class="fab fa-linkedin"></i> LinkedIn
-    </a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-eyebrow reveal">Student &amp; Product Engineer</div>
+  <h1 class="hero-headline reveal d1">
+    I don't just build,<br>
+    <em>I figure out what<br>to build.</em>
+  </h1>
+  <p class="hero-sub reveal d2">
+    I'm a builder who thinks like a product manager. I focus on clarity, real problems, and creating things people actually use.
+  </p>
+  <div class="hero-actions reveal d3">
+    <a href="#work" class="btn-primary">View My Work</a>
+    <a href="/resume.pdf" target="_blank" rel="noopener" class="btn-ghost">Download Résumé <span class="arr">↗</span></a>
   </div>
-
-  <!-- Contact Form -->
-  <div class="contact-form">
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <div class="hero-stats reveal d4">
+    <div class="hero-stat"><span class="stat-num">2</span><span class="stat-label">Real Projects</span></div>
+    <div class="hero-stat"><span class="stat-num">4th</span><span class="stat-label">Year · AI&DS</span></div>
+    <div class="hero-stat"><span class="stat-num">∞</span><span class="stat-label">Problems to Solve</span></div>
   </div>
 </section>
-    
 
-  <!-- === FOOTER === -->
-  <footer>
-    © 2025 Akhil Goswami | All Rights Reserved
-  </footer>
-  <script src="script.js"></script>
+<!-- PROJECTS -->
+<section class="projects" id="work">
+  <div class="projects-header reveal">
+    <div class="section-label">Selected Work</div>
+    <h2 class="projects-title">Real Projects. Real Problems.</h2>
+  </div>
+  <div class="bento reveal d1">
+
+    <!-- KnightCraving -->
+    <div class="bento-item proj-main">
+      <div class="proj-bg-text">KC</div>
+      <div class="proj-status"><span class="status-dot live"></span>Mostly Done · Case Study Ready</div>
+      <div class="proj-tag-bar">Food Tech · Price Comparison</div>
+      <h3 class="proj-name">KnightCraving</h3>
+      <p class="proj-desc">People waste time switching between Zomato and Swiggy hunting for the best deal. KnightCraving instantly compares food prices across platforms so users choose smarter — in seconds.</p>
+      <div class="proj-stack">React · JavaScript · API Integration · Dynamic Data</div>
+      <a href="case_study_kc.html" class="proj-link">View Case Study <span class="project-arrow">↗</span></a>
+    </div>
+
+    <!-- House Service -->
+    <div class="bento-item proj-secondary">
+      <div class="proj-bg-icon">🔧</div>
+      <div class="proj-status"><span class="status-dot concept"></span>Early Stage · Case Study Ready</div>
+      <div class="proj-tag-bar">Local Services · Platform</div>
+      <h3 class="proj-name">House Service</h3>
+      <p class="proj-desc">Finding a reliable electrician or plumber is broken. This platform connects households directly with trusted local service providers — no middlemen, no mess.</p>
+      <div class="proj-stack">React · Node.js · MongoDB / Firebase</div>
+      <a href="#" class="proj-link">Case Study Coming Soon <span class="project-arrow">↗</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="thinking">
+  <div class="phil-top">
+    <div class="reveal">
+      <div class="phil-section-tag">The Philosophy</div>
+      <h2 class="phil-title">How I Think<br>About Building</h2>
+    </div>
+    <div class="phil-card reveal d1">
+      <div class="phil-card-icon">◎</div>
+      <div class="phil-card-title">Problem-First, Always</div>
+      <p class="phil-card-text">I don't start with code. I start by understanding who has the problem, why it exists, and whether solving it actually matters. Most features don't need to be built.</p>
+    </div>
+    <div class="phil-card reveal d2">
+      <div class="phil-card-icon">⟳</div>
+      <div class="phil-card-title">Clarity Over Cleverness</div>
+      <p class="phil-card-text">A solution people understand and use beats an elegant one they ignore. I optimize for adoption, not admiration.</p>
+    </div>
+  </div>
+  <div class="phil-grid">
+    <div class="phil-grid-item reveal">
+      <div class="phil-card-icon" style="font-size:20px">⊕</div>
+      <div class="phil-card-title" style="font-size:16px;margin-bottom:10px">Explore Before Committing</div>
+      <p class="phil-card-text">I map multiple approaches before choosing one. This isn't indecision — it's how you avoid building the wrong thing with confidence.</p>
+    </div>
+    <div class="phil-grid-item reveal d1">
+      <div class="phil-card-icon" style="font-size:20px">↗</div>
+      <div class="phil-card-title" style="font-size:16px;margin-bottom:10px">Iterate Without Ego</div>
+      <p class="phil-card-text">Being wrong fast is better than being wrong slowly. I validate assumptions early and I'm comfortable scrapping what doesn't work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-header reveal">
+    <div class="process-eyebrow">Process &amp; Blueprint</div>
+    <h2 class="process-title">From Zero to Intent</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-cell reveal">
+      <div class="process-badge">01</div>
+      <h3 class="process-step-title">Find the Real Problem</h3>
+      <p class="process-step-text">I sit with friction before touching tools. Most stated problems are symptoms — I dig for the root: what's actually broken and for whom.</p>
+      <div class="process-num-bg">1</div>
+    </div>
+    <div class="process-cell-visual reveal d1"><div class="orb3d"></div></div>
+    <div class="process-cell-visual reveal d1" style="background:#0b0b0b">
+      <div style="width:80px;height:80px;border-radius:50%;border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:44px;color:rgba(255,255,255,.06)">2</div>
+    </div>
+    <div class="process-cell reveal">
+      <div class="process-badge">02</div>
+      <h3 class="process-step-title">Map Multiple Paths</h3>
+      <p class="process-step-text">Before committing, I explore at least three structural approaches — evaluating trade-offs in complexity, usability, and feasibility against real constraints.</p>
+      <div class="process-num-bg">2</div>
+    </div>
+    <div class="process-cell reveal" style="grid-column:1/-1">
+      <div class="process-badge">03</div>
+      <h3 class="process-step-title">Ship with Intention</h3>
+      <p class="process-step-text">The final output isn't just functional — it's considered. Every decision has a reason, documented so others and future-me can build on top of it.</p>
+      <div class="process-num-bg">3</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIMENTS -->
+<section class="experiments">
+  <div class="exp-header reveal">
+    <h2 class="experiments-title">Side Experiments</h2>
+    <span class="exp-count">02 projects</span>
+  </div>
+  <div>
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-name">Plutus Bank</div>
+          <div class="exp-desc">A simulated banking system to explore digital transaction flows and account logic.</div>
+        </div>
+      </div>
+      <span class="exp-tag">FinTech Sim</span>
+      <span class="exp-arrow">→</span>
+    </div>
+    <div class="exp-item reveal d1">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-name">Hands of Cards</div>
+          <div class="exp-desc">Strategy-based multiplayer card game built around prediction, risk, and decision-making.</div>
+        </div>
+      </div>
+      <span class="exp-tag">Game · Strategy</span>
+      <span class="exp-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="about-photo-wrap">
+      <img src="/Assets/home_page_photo.png" alt="Akhilpari Goswami" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="photo-label">Akhilpari Goswami</div>
+    </div>
+  </div>
+  <div class="reveal d1">
+    <div class="about-tag">The Builder</div>
+    <h2 class="about-heading">Engineering student<br>who thinks like a<br><em>product person.</em></h2>
+    <p class="about-text">I'm an engineering student who thinks beyond just coding and focuses on building meaningful products. I enjoy breaking down problems, validating ideas, and turning them into practical solutions.</p>
+    <p class="about-text">Driven by curiosity and the desire to create things that make sense in the real world. Currently exploring product building, experimentation, and real-world problem solving.</p>
+    <div class="about-focus">
+      <span class="focus-chip">Product Engineering</span>
+      <span class="focus-chip">React</span>
+      <span class="focus-chip">AI &amp; Data Science</span>
+      <span class="focus-chip">SaaS</span>
+      <span class="focus-chip">Problem Solving</span>
+    </div>
+    <div class="about-creds">
+      <div class="cred"><div class="cred-label">College</div><div class="cred-value">GEC Rajkot</div></div>
+      <div class="cred"><div class="cred-label">University</div><div class="cred-value">GTU</div></div>
+      <div class="cred"><div class="cred-label">Year · Course</div><div class="cred-value">4th Year · AI&DS</div></div>
+    </div>
+    <div style="margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="/resume.pdf" target="_blank" rel="noopener" class="btn-primary">Download Résumé ↗</a>
+      <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn-ghost">Get in Touch <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip reveal">
+  <a href="https://github.com/AkhilpariGoswami" target="_blank" rel="noopener" class="social-link">⌥ GitHub</a>
+  <a href="https://www.linkedin.com/in/akhilpari-goswami/" target="_blank" rel="noopener" class="social-link">◈ LinkedIn</a>
+  <a href="mailto:akhilparikgoswami@gmail.com" class="social-link">◉ akhilparikgoswami@gmail.com</a>
+  <a href="/resume.pdf" target="_blank" rel="noopener" class="social-link">↓ Résumé</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 <span>Akhilpari Goswami</span>. All rights reserved.</span>
+  <div class="footer-right">Built with intent, not just code.</div>
+</footer>
+
+<script>
+  // Cursor
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function tick(){ rx+=(mx-rx)*.11; ry+=(my-ry)*.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(tick); })();
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', ()=>ring.classList.add('hovered'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('hovered'));
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hero immediate
+  document.querySelectorAll('.hero .reveal').forEach((el,i) => setTimeout(()=>el.classList.add('visible'), 80+i*140));
+</script>
 </body>
 </html>
